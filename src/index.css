@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Google+Sans+Text:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&family=Orbitron:wght@400;500;600;700;800;900&family=Outfit:wght@500;600;700;800&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap');
+
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg-primary: #F0F4F8;
+  --bg-secondary: #E2E8F0;
+  --text-main: #0F172A;
+  --text-muted: #475569;
+  --border-color: rgba(0, 136, 176, 0.25);
+  --tech-cyan: #007799;
+  --tech-cyan-glow: #0099B8;
+  --tech-blue: #2563EB;
+  --tech-amber: #D97706;
+  --tech-emerald: #059669;
+  --tech-magenta: #C026D3;
+  --dark-zinc: #F1F5F9;
+  --grid-line: rgba(0, 136, 176, 0.12);
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-bg-hover: rgba(255, 255, 255, 0.98);
+  --card-border-hover: rgba(0, 150, 200, 0.5);
+  --card-shadow-hover: 0 12px 32px rgba(0, 136, 176, 0.18), inset 0 0 15px rgba(0, 136, 176, 0.05);
+  --scrollbar-track: #F0F4F8;
+  --scrollbar-thumb: rgba(0, 136, 176, 0.3);
+  --scrollbar-thumb-hover: rgba(0, 136, 176, 0.6);
+  --navbar-bg: rgba(240, 244, 248, 0.85);
+  --spec-box-bg: rgba(255, 255, 255, 0.95);
+  --spec-box-text: #0F172A;
+  --header-glow: rgba(0, 136, 176, 0.15);
+  --inner-box-bg: rgba(226, 232, 240, 0.7);
+  --inner-box-border: rgba(0, 136, 176, 0.3);
+}
+
+.dark {
+  --bg-primary: #040814;
+  --bg-secondary: #0A1024;
+  --text-main: #F1F5F9;
+  --text-muted: #94A3B8;
+  --border-color: rgba(0, 240, 255, 0.2);
+  --tech-cyan: #00F0FF;
+  --tech-cyan-glow: #00F0FF;
+  --tech-blue: #3B82F6;
+  --tech-amber: #FFB800;
+  --tech-emerald: #00FF9D;
+  --tech-magenta: #FF007F;
+  --dark-zinc: #0F172A;
+  --grid-line: rgba(0, 240, 255, 0.07);
+  --card-bg: rgba(6, 12, 28, 0.75);
+  --card-bg-hover: rgba(10, 20, 45, 0.85);
+  --card-border-hover: rgba(0, 240, 255, 0.6);
+  --card-shadow-hover: 0 0 30px rgba(0, 240, 255, 0.25), inset 0 0 15px rgba(0, 240, 255, 0.1);
+  --scrollbar-track: #040814;
+  --scrollbar-thumb: rgba(0, 240, 255, 0.2);
+  --scrollbar-thumb-hover: rgba(0, 240, 255, 0.65);
+  --navbar-bg: rgba(4, 8, 20, 0.9);
+  --spec-box-bg: rgba(5, 10, 24, 0.95);
+  --spec-box-text: #F8FAFC;
+  --header-glow: rgba(0, 240, 255, 0.1);
+  --inner-box-bg: rgba(0, 0, 0, 0.6);
+  --inner-box-border: rgba(0, 240, 255, 0.2);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: 'Google Sans', 'Google Sans Text', 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Custom Font Utilities */
+.font-google-sans {
+  font-family: 'Google Sans', 'Google Sans Text', 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Custom Font Utilities */
+.font-orbitron {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.font-rajdhani {
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.font-tech {
+  font-family: 'Share Tech Mono', 'JetBrains Mono', monospace;
+}
+
+/* High-Tech Blueprint Cyber Grid */
+.grid-blueprint {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  position: relative;
+}
+
+.grid-blueprint::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(0, 240, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Cyber Scanning CRT Lines Effect */
+.scanlines {
+  position: relative;
+}
+.dark .scanlines::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  background-size: 100% 4px;
+  z-index: 20;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* Cyber Glass Card */
+.clean-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.clean-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--tech-cyan), transparent);
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+.clean-card:hover {
+  border-color: var(--card-border-hover);
+  background-color: var(--card-bg-hover);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.clean-card:hover::after {
+  opacity: 1;
+}
+
+/* Cyber HUD Corner Brackets */
+.cyber-bracket {
+  position: relative;
+}
+.cyber-bracket::before,
+.cyber-bracket::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: var(--tech-cyan);
+  pointer-events: none;
+}
+.cyber-bracket::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid var(--tech-cyan);
+  border-left: 2px solid var(--tech-cyan);
+}
+.cyber-bracket::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid var(--tech-cyan);
+  border-right: 2px solid var(--tech-cyan);
+}
+
+/* Glowing Neon Utility Classes */
+.text-glow-cyan {
+  text-shadow: 0 0 12px var(--tech-cyan-glow);
+}
+
+.text-glow-amber {
+  text-shadow: 0 0 12px var(--tech-amber);
+}
+
+.text-glow-emerald {
+  text-shadow: 0 0 12px var(--tech-emerald);
+}
+
+.box-glow-cyan {
+  box-shadow: 0 0 20px var(--header-glow);
+}
+
+/* Code & Spec Box */
+.spec-box {
+  background-color: var(--spec-box-bg);
+  color: var(--spec-box-text);
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-color);
+  box-shadow: inset 0 0 15px var(--header-glow);
+}
+
+/* Keyframe Animations */
+@keyframes laser-scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
+.animate-laser {
+  animation: laser-scan 4s linear infinite;
+}
+
+@keyframes cyber-pulse {
+  0%, 100% { opacity: 0.4; filter: drop-shadow(0 0 2px #00F0FF); }
+  50% { opacity: 1; filter: drop-shadow(0 0 10px #00F0FF); }
+}
+
+.animate-cyber-pulse {
+  animation: cyber-pulse 2.5s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
