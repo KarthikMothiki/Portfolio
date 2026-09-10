@@ -1,57 +1,49 @@
 import React from 'react';
-import { soundFx } from '../lib/sound';
+import { Container } from './Container';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onOpenPrivacy?: () => void;
+  onOpenTerms?: () => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms }) => {
   return (
-    <footer className="py-8 bg-[var(--card-bg)] border-t border-[var(--border-color)] text-slate-600 dark:text-zinc-400 font-tech text-xs">
-      <div className="max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-[#00FF9D] animate-ping" />
-          <span>© {new Date().getFullYear()} KARTHIK MOTHIKI // SENIOR ROBOTICS ENGINEER</span>
+    <footer className="py-8 border-t border-[var(--border)] bg-[var(--bg-primary)] text-xs font-sans text-[var(--text-tertiary)]">
+      <Container>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <span className="text-[var(--text-primary)] font-medium">Karthik Mothiki</span>
+            <span className="mx-2">·</span>
+            <span>Senior Robotics Engineer</span>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <span>© {new Date().getFullYear()} Karthik Mothiki. All rights reserved.</span>
+            {onOpenPrivacy && (
+              <>
+                <span>·</span>
+                <button
+                  onClick={onOpenPrivacy}
+                  className="hover:text-[var(--text-secondary)] transition-colors cursor-pointer"
+                >
+                  Privacy Policy
+                </button>
+              </>
+            )}
+            {onOpenTerms && (
+              <>
+                <span>·</span>
+                <button
+                  onClick={onOpenTerms}
+                  className="hover:text-[var(--text-secondary)] transition-colors cursor-pointer"
+                >
+                  Terms of Service
+                </button>
+              </>
+            )}
+          </div>
         </div>
-        <div className="flex items-center gap-4 text-slate-600 dark:text-zinc-400 font-bold">
-          <a
-            href="#hero"
-            onClick={() => soundFx.playClick()}
-            onMouseEnter={() => soundFx.playHover()}
-            className="hover:text-[var(--tech-cyan)] transition-colors"
-          >
-            OVERVIEW
-          </a>
-          <a
-            href="#principles"
-            onClick={() => soundFx.playClick()}
-            onMouseEnter={() => soundFx.playHover()}
-            className="hover:text-[var(--tech-cyan)] transition-colors"
-          >
-            PRINCIPLES
-          </a>
-          <a
-            href="#leadership"
-            onClick={() => soundFx.playClick()}
-            onMouseEnter={() => soundFx.playHover()}
-            className="hover:text-[var(--tech-cyan)] transition-colors"
-          >
-            LEADERSHIP
-          </a>
-          <a
-            href="#case-studies"
-            onClick={() => soundFx.playClick()}
-            onMouseEnter={() => soundFx.playHover()}
-            className="hover:text-[var(--tech-cyan)] transition-colors"
-          >
-            CASE STUDIES
-          </a>
-          <a
-            href="#contact"
-            onClick={() => soundFx.playClick()}
-            onMouseEnter={() => soundFx.playHover()}
-            className="hover:text-[var(--tech-cyan)] transition-colors"
-          >
-            CONNECT
-          </a>
-        </div>
-      </div>
+      </Container>
     </footer>
   );
 };

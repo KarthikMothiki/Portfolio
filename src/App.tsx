@@ -1,36 +1,65 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
-import { InteractiveArchitecture } from './components/InteractiveArchitecture';
-import { EngineeringPrinciples } from './components/EngineeringPrinciples';
-import { LeadershipSection } from './components/LeadershipSection';
 import { CaseStudiesSection } from './components/CaseStudiesSection';
-import { CapabilitiesSection } from './components/CapabilitiesSection';
-import { ExperienceTimeline } from './components/ExperienceTimeline';
+import { InteractiveArchitecture } from './components/InteractiveArchitecture';
+import { EngineeringNotes } from './components/EngineeringNotes';
+import { Experience } from './components/Experience';
+import { Education } from './components/Education';
+import { TechnicalDomains } from './components/TechnicalDomains';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
-import { CustomCursor } from './components/CustomCursor';
-import { ParticleBackground } from './components/ParticleBackground';
+import { CookieBanner } from './components/CookieBanner';
+import { StickyMobileCTA } from './components/StickyMobileCTA';
+import { LegalModals } from './components/LegalModals';
+import { NotFound } from './components/NotFound';
 import { ThemeProvider } from './lib/theme';
 
 export const App: React.FC = () => {
+  const [is404, setIs404] = useState(false);
+
+  useEffect(() => {
+    // Basic route check for custom 404 page demonstration / pathname handling
+    const path = window.location.pathname;
+    if (path !== '/' && path !== '' && !path.endsWith('.html') && !path.endsWith('.pdf')) {
+      setIs404(true);
+    }
+  }, []);
+
+  if (is404) {
+    return <NotFound />;
+  }
+
+  const triggerPrivacy = () => {
+    const el = document.querySelector('#legal-triggers button:first-child') as HTMLButtonElement;
+    if (el) el.click();
+  };
+
+  const triggerTerms = () => {
+    const el = document.querySelector('#legal-triggers button:last-child') as HTMLButtonElement;
+    if (el) el.click();
+  };
+
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-main)] selection:bg-[#00F0FF] selection:text-black transition-colors duration-300 relative scanlines">
-        <ParticleBackground />
-        <CustomCursor />
+      <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300 relative">
         <Navbar />
         <main className="relative z-10">
           <HeroSection />
-          <InteractiveArchitecture />
-          <EngineeringPrinciples />
-          <LeadershipSection />
           <CaseStudiesSection />
-          <CapabilitiesSection />
-          <ExperienceTimeline />
+          <InteractiveArchitecture />
+          <EngineeringNotes />
+          <Experience />
+          <Education />
+          <TechnicalDomains />
           <ContactSection />
         </main>
-        <Footer />
+        <Footer onOpenPrivacy={triggerPrivacy} onOpenTerms={triggerTerms} />
+
+        {/* Production Utilities */}
+        <CookieBanner />
+        <StickyMobileCTA />
+        <LegalModals />
       </div>
     </ThemeProvider>
   );

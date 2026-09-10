@@ -4,18 +4,10 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
-      colors: {
-        titaniumBg: '#F8F9FA',
-        obsidianText: '#111827',
-        slateMuted: '#4B5563',
-        darkZinc: '#1F2937',
-        techBlue: '#3B82F6',
-        faintGrid: '#E5E7EB',
-      },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Google Sans', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        heading: ['Google Sans', 'Inter', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
-        heading: ['Outfit', 'sans-serif'],
       },
     },
   },

@@ -1,0 +1,15 @@
+{
+  "short_name": "KM Portfolio",
+  "name": "Karthik Mothiki | Senior Robotics Engineer Portfolio",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ],
+  "start_url": ".",
+  "background_color": "#0C0A09",
+  "theme_color": "#2563EB",
+  "display": "standalone"
+}

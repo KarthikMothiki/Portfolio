@@ -12,7 +12,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setThemeState] = useState<Theme>(() => {
     const saved = localStorage.getItem('theme') as Theme;
-    return saved || 'dark';
+    return saved || 'system';
   });
 
   const setTheme = (newTheme: Theme) => {
@@ -24,11 +24,9 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const root = window.document.documentElement;
 
     const applyTheme = () => {
-      let isDark = true;
+      let isDark: boolean;
       if (theme === 'system') {
-        // If system theme is selected, default to dark unless explicitly light
-        const match = window.matchMedia('(prefers-color-scheme: dark)');
-        isDark = match.matches || !window.matchMedia('(prefers-color-scheme: light)').matches;
+        isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       } else {
         isDark = theme === 'dark';
       }
@@ -45,15 +43,8 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     if (theme === 'system') {
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
       const listener = () => applyTheme();
-      
-      // Support older/newer browsers for addEventListener
-      if (mediaQuery.addEventListener) {
-        mediaQuery.addEventListener('change', listener);
-        return () => mediaQuery.removeEventListener('change', listener);
-      } else {
-        mediaQuery.addListener(listener);
-        return () => mediaQuery.removeListener(listener);
-      }
+      mediaQuery.addEventListener('change', listener);
+      return () => mediaQuery.removeEventListener('change', listener);
     }
   }, [theme]);
 
