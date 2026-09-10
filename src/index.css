@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─────────────────────────────────────────────
+   Design Tokens: Warm Stone + Steel Blue
+   ───────────────────────────────────────────── */
+
+:root {
+  --bg-primary: #FAFAF9;
+  --bg-secondary: #F5F5F4;
+  --surface: rgba(255, 255, 255, 0.72);
+  --surface-solid: #FFFFFF;
+  --text-primary: #1C1917;
+  --text-secondary: #44403C;
+  --text-tertiary: #78716C;
+  --border: rgba(0, 0, 0, 0.06);
+  --border-strong: rgba(0, 0, 0, 0.12);
+  --accent: #2563EB;
+  --accent-hover: #1D4ED8;
+  --accent-subtle: rgba(37, 99, 235, 0.08);
+  --success: #059669;
+  --radius-card: 16px;
+  --radius-sm: 10px;
+  --spacing-section: clamp(48px, 6vw, 80px);
+}
+
+.dark {
+  --bg-primary: #0C0A09;
+  --bg-secondary: #1C1917;
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-solid: #1C1917;
+  --text-primary: #FAFAF9;
+  --text-secondary: #E7E5E4;
+  --text-tertiary: #A8A29E;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --accent: #60A5FA;
+  --accent-hover: #93C5FD;
+  --accent-subtle: rgba(96, 165, 250, 0.1);
+  --success: #34D399;
+}
+
+/* ─────────────────────────────────────────────
+   Base Styles
+   ───────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+  scroll-snap-type: y proximity;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Google Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Scroll Snap Helpers */
+.snap-y-proximity {
+  scroll-snap-type: y proximity;
+}
+
+.snap-y-mandatory {
+  scroll-snap-type: y mandatory;
+}
+
+.snap-item-center {
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+.snap-item-start {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* ─────────────────────────────────────────────
+   Typography Utilities
+   ───────────────────────────────────────────── */
+
+.font-heading {
+  font-family: 'Google Sans', 'Inter', system-ui, sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ─────────────────────────────────────────────
+   Glass Card: Premium Restrained Glassmorphism
+
+   Rules:
+   1. Glass reveals hierarchy, never creates it
+   2. Translucent surfaces with subtle backdrop blur
+   3. 1px hairline borders
+   4. Extremely soft shadows
+   5. Almost no glow - the user should think
+      "this interface feels expensive", not
+      "this website uses glassmorphism"
+   ───────────────────────────────────────────── */
+
+.glass-card,
+.glass-panel,
+.card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.78) 0%,
+    rgba(255, 255, 255, 0.48) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.03),
+    0 4px 16px -4px rgba(0, 0, 0, 0.06);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark .glass-card,
+.dark .glass-panel,
+.dark .card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.15),
+    0 4px 16px -4px rgba(0, 0, 0, 0.3);
+}
+
+.glass-card:hover,
+.glass-panel:hover,
+.card:hover {
+  border-color: var(--border-strong);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 8px 24px -6px rgba(0, 0, 0, 0.08);
+}
+
+.dark .glass-card:hover,
+.dark .glass-panel:hover,
+.dark .card:hover {
+  border-color: var(--border-strong);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    0 8px 24px -6px rgba(0, 0, 0, 0.4);
+}
+
+/* ─────────────────────────────────────────────
+   Glass Pill / Badge
+   ───────────────────────────────────────────── */
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+}
+
+.dark .glass-pill {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+}
+
+/* ─────────────────────────────────────────────
+   Scrollbar
+   ───────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* ─────────────────────────────────────────────
+   Accessibility
+   ───────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
