@@ -3,7 +3,6 @@ import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { CaseStudiesSection } from './components/CaseStudiesSection';
 import { InteractiveArchitecture } from './components/InteractiveArchitecture';
-import { EngineeringNotes } from './components/EngineeringNotes';
 import { Experience } from './components/Experience';
 import { Education } from './components/Education';
 import { TechnicalDomains } from './components/TechnicalDomains';
@@ -48,7 +47,6 @@ export const App: React.FC = () => {
           <HeroSection />
           <CaseStudiesSection />
           <InteractiveArchitecture />
-          <EngineeringNotes />
           <Experience />
           <Education />
           <TechnicalDomains />
